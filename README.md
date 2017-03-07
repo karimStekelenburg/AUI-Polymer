@@ -46,25 +46,21 @@ fietsen vernietigd.
 | Verhuurder     | Fiets innemen       |
 | Verhuurder     | Fiets vehuren       |
 | Verhuurder     | Fiets verkopen      |
-|                |                     |
-|                |                     |
-|                |                     |
-|                |                     |
-|                |                     |
+| Verhuurder     | Reparatie afronden  |
 
 ### Toestandsdiagram
 
-| Toestand van | Toestand naar | Actor | Beschrijving |
-| ------------ | ------------- | ----- | ------------ |
-| Start        |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
-|              |               |       |              |
+| Toestand van | Toestand naar | Actor      | Beschrijving                             |
+| ------------ | ------------- | ---------- | ---------------------------------------- |
+| start        | net binnen    | verhuurder | de actor ontvangt de fiets.              |
+| net binnen   | verhuurbaar   | verhuurder | de actor maakt een nieuwe fietskaart aan |
+|              |               |            |                                          |
+|              |               |            |                                          |
+|              |               |            |                                          |
+|              |               |            |                                          |
+|              |               |            |                                          |
+|              |               |            |                                          |
+|              |               |            |                                          |
 
 ### Use Case samenvatting/template
 
