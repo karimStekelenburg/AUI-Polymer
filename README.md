@@ -30,9 +30,55 @@ fietsen vernietigd.
 
 ## UML Diagrams
 
-### State Diagram: Fiets
+### Toestandsdiagram: Fiets
 
 ![State Diagram: Fiets](img/stateDiagram.jpg)
+
+
+
+## Volledigheidscheck
+
+### Usecase Diagram
+
+| Actor (actors) | Usecase name        |
+| -------------- | ------------------- |
+| Verhuurder     | Fietskaart aanmaken |
+| Verhuurder     | Fiets innemen       |
+| Verhuurder     | Fiets vehuren       |
+| Verhuurder     | Fiets verkopen      |
+|                |                     |
+|                |                     |
+|                |                     |
+|                |                     |
+|                |                     |
+
+### Toestandsdiagram
+
+| Toestand van | Toestand naar | Actor | Beschrijving |
+| ------------ | ------------- | ----- | ------------ |
+| Start        |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+|              |               |       |              |
+
+### Use Case samenvatting/template
+
+| Use Case | Samenvatting |
+| -------- | ------------ |
+|          |              |
+|          |              |
+|          |              |
+|          |              |
+|          |              |
+|          |              |
+|          |              |
+|          |              |
+|          |              |
 
 
 
