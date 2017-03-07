@@ -34,6 +34,12 @@ fietsen vernietigd.
 
 ![State Diagram: Fiets](img/stateDiagram.jpg)
 
+### Use Case Diagram
+
+
+
+![Use Case Diagram: Fietsverhuursysteem](img/useCaseDiagram.jpg)
+
 
 
 ## Volledigheidscheck
