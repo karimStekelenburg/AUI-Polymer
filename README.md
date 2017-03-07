@@ -33,3 +33,21 @@ fietsen vernietigd.
 ### State Diagram: Fiets
 
 ![State Diagram: Fiets](img/stateDiagram.jpg)
+
+
+
+## Developer notes
+
+### Todo
+
+- [ ] Finish usecase diagram
+      - [ ] add actor(s)
+      - [ ] fix frame issue (1)
+- [ ] Make at least two usecase templates/descriptions
+- [ ] Make completeness check
+
+
+
+### Issues
+
+- [ ] (1) The frame-names in StarUML are automaticly generated and do not satisfy the HU standards
