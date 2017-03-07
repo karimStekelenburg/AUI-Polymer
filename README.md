@@ -53,28 +53,21 @@ fietsen vernietigd.
 | Toestand van | Toestand naar | Actor      | Beschrijving                             |
 | ------------ | ------------- | ---------- | ---------------------------------------- |
 | start        | net binnen    | verhuurder | de actor ontvangt de fiets.              |
-| net binnen   | verhuurbaar   | verhuurder | de actor maakt een nieuwe fietskaart aan |
-|              |               |            |                                          |
-|              |               |            |                                          |
-|              |               |            |                                          |
-|              |               |            |                                          |
-|              |               |            |                                          |
-|              |               |            |                                          |
-|              |               |            |                                          |
+| net binnen   | verhuurbaar   | verhuurder | de actor maakt een nieuwe fietskaart aan in het systeem met de status 'verhuurbaar'. |
+| verhuurbaar  | verhuurd      | verhuurder | de actor verhuurt de fiets aan de huurder en zet in het systeem de status van de fiets op 'verhuurt'. |
+| verhuurd     | verhuurbaar   | verhuurder | de actor zet in het systeem de status van de fiets op 'verhuurbaar'. |
+| verhuurd     | in onderhoud  | verhuurder | de actor zet in het systeem de status van de fiets op 'in onderhoud'. |
+| in onderhoud | verhuurbaar   | verhuurder | de actor zet in het systeem de status van de fiets op 'verhuurbaar'. |
+| verhuurbaar  | verkocht      | verhuurder | de actor verwijdert de fiets uit het systeem. |
 
 ### Use Case samenvatting/template
 
-| Use Case | Samenvatting |
-| -------- | ------------ |
-|          |              |
-|          |              |
-|          |              |
-|          |              |
-|          |              |
-|          |              |
-|          |              |
-|          |              |
-|          |              |
+|      Use Case       | Samenvatting                             |
+| :-----------------: | ---------------------------------------- |
+| fietskaart aanmaken | wanneer er een nieuwe fiets binnenkomt, maakt de actor een registratie in het systeem van de nieuwe fiets. in deze registratie vermeld de actor de kleur van de fiets, word de status op 'verhuurbaar' gezet en wijst het systeem automatisch een uniek nummer aan de fiets toe. |
+|    fiets innemen    | wanneer een huurder de fiets inlevert, kijkt de actor of de fiets defecten heeft. als dit zo is word de status van de fiets in het systeem op 'in onderhoud' gezet. als de fiets geen defecten heeft word de status van de fiets op 'verhuurbaar' gezet. |
+|   fiets verhuren    | wanneer een fiets word verhuurt, zet de actor de status van de fiets in het systeem op 'verhuurt'. |
+|   fiets verkopen    | wanneer een fiets word verkocht, verwijdert de actor de fiets uit het systeem. |
 
 
 
