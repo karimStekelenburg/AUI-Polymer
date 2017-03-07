@@ -25,3 +25,11 @@ gegaan. Aan het einde van het kalenderjaar worden alle fietsen die minimaal 9 ma
 verkoop staan als één partij geveild aan een groep opkopers, op die manier verdwijnt de fiets
 definitief uit het bestand van het recreatiebedrijf en worden de fietskaarten van de verkochte
 fietsen vernietigd.
+
+
+
+## UML Diagrams
+
+### State Diagram: Fiets
+
+![State Diagram: Fiets](img/stateDiagram.jpg)
