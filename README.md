@@ -42,6 +42,9 @@ fietsen vernietigd.
 
 ### Usecase template
 
+![UCTEMPLATE VAN FIETSKAAR AANMAKEN](img\useCaseTemplate1.jpg)
+
+![UCTEMPLATE VAN FIETFS INNEMEN](img\useCaseTemplate2.jpg)
 
 ## Volledigheidscheck
 
