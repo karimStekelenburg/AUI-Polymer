@@ -8,8 +8,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 <dom-module id="my-view1">
   <template>
@@ -35,25 +38,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <h1>Fietsen</h1>
-      <p></p>
-      <table>
-        <tr>
-          <th class="left id">ID </th>
-          <th class="left datum">Datum van registratie </th>
-          <th class="left status">Status</th>
-          <th class="left actie">Acie </th>
-          <th class="left notities">Notities</th>
-        </tr>
-        <template is="dom-repeat" items="{{fietsen}}">
-          <tr>
-            <td class="left id">{{item.id}}</td>
-            <td class="left datum">{{item.date}}</td>
-            <td class="left status">{{item.status}}</td>
-            <td class="left actie">{{item.action}}</td>
-            <td class="left notities">{{item.notes}}</td>
-          </tr>
-        </template>
-      </table>
+        <h1>Nieuwe reservering</h1>
+        <p>
+        <h2>1. Vul een datum en tijd in</h2>
+        <paper-input id="input1" label="Vul een datum in (yyyy-mm-dd)" value="{{date}}"></paper-input>
+        </p>
+        <h2>2. vul een status in </h2>
+        <paper-input id="input2" label="status?" value="{{state}}"></paper-input>
+        </p>
+        <p>
+        <h2>3. Vul een notities</h2>
+        <paper-input id="input3" label="Vul een notities in" value="{{notes}}"></paper-input>
+        </p>
+        <p>
+        <h2>4. Bevestigen</h2>
+            <paper-button on-click="newReservation" class="green">Bevestigen</paper-button>
+            <paper-button on-click="cancelBike" class="red">Annuleren</paper-button>
+        </p>
       <paper-button
               class="my-button"
               on-click="_fiets_toevoegen_request_handler">nieuwe fiets
@@ -71,12 +72,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 type: Array
             }
         },
-        responseHandler: function () {
-            return "ass";
+        responseHandler: function (request) {
+            console.log("Response: " + request.detail.response.errorCode);
         },
         _fiets_toevoegen_request_handler : function () {
+            this.$.ajax.contentType = "application/json";
+            this.$.ajax.body = {
+                regDate: this.date,
+                status: this.state,
+                notes: this.notes
+            };
+            this.$.ajax.generateRequest();
             return true;
-        }
+        },
+        cancelBike: function() {
+            clearFields();
+        },
 
     });
   </script>
