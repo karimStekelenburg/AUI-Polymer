@@ -184,7 +184,7 @@ is separate from validation, and `allowed-pattern` does not affect how the input
     },
 
     _onInput: function() {
-      // Need to validate each of the characters pasted if they haven't
+      // Need to validateDate each of the characters pasted if they haven't
       // been validated inside `_onKeypress` already.
       if (this.preventInvalidInput && !this._patternAlreadyChecked) {
         var valid = this._checkPatternValidity();
@@ -299,8 +299,8 @@ is separate from validation, and `allowed-pattern` does not affect how the input
   });
 
   /*
-  The `iron-input-validate` event is fired whenever `validate()` is called.
-  @event iron-input-validate
+  The `iron-input-validateDate` event is fired whenever `validateDate()` is called.
+  @event iron-input-validateDate
   */
 
 </script>
