@@ -9,4 +9,4 @@ db = sqlHandler.DbInterface(dbConfig.db)
 fiets = jsonHandler.deserializeJson()
 response = {"errorCode": newFiets(fiets)}
 jsonHandler.serializeJson(response)
-db.close();
+db.close()
