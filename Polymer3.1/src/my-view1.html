@@ -58,18 +58,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               class="my-button"
               on-click="_fiets_toevoegen_request_handler">nieuwe fiets
       </paper-button>
+      <iron-ajax id="ajax" method="POST" url="/python_cgi/new_fiets.py" handle-as="json" on-response="responseHandler"></iron-ajax>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view1',
+        is: 'my-view1',
 
-      properties: {
-          fietsen: {
-              type: Array
-          }
-      }
+        properties: {
+            fietsen: {
+                type: Array
+            }
+        },
+        responseHandler: function () {
+            return "ass";
+        },
+        _fiets_toevoegen_request_handler : function () {
+            return true;
+        }
+
     });
   </script>
 </dom-module>
