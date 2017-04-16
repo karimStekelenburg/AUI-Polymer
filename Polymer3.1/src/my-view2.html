@@ -8,28 +8,81 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 <dom-module id="my-view2">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
+      }
+      .left {
+        min-width: 100px;
+        text-align: left;
+      }
+      .my-button {
+        width: 100%;                        /* full width */
+        color: white;                       /* white tekst */
+        background: #1a9fd9;                /* kind of blue */
+        --paper-button-ink-color: #00567B;  /* kind of dark blue */
+        margin-top: 5px;                    /* enlarge thet default */
+        margin-left: 0px;                   /* reduce the default */
       }
     </style>
 
+    <iron-ajax auto id="ajax" method="POST" url="/cgi-bin/get_fietsen.py" handle-as="json" last-response="{{reservations}}"></iron-ajax>
     <div class="card">
       <div class="circle">2</div>
-      <h1>Fietsen overzicht</h1>\
+      <h1>Fietsen overzicht</h1>
+      <table>
+        <tr>
+          <th class="left id">ID </th>
+          <th class="left datum">Datum van registratie </th>
+          <th class="left status">Status</th>
+          <th class="left actie">Acie </th>
+          <th class="left notities">Notities</th>
+        </tr>
+        <template is="dom-repeat" items="{fietsen}}">
+          <tr>
+            <td class="left id">{item.id}}</td>
+            <td class="left datum">{item.date}}</td>
+            <td class="left status">{item.status}}</td>
+            <td class="left actie">{item.action}}</td>
+            <td class="left notities">{item.notes}}</td>
+          </tr>
+        </template>
+      </table>
+      <!--<paper-button-->
+              <!--class="my-button"-->
+              <!--on-click="_fiets_toevoegen_request_handler">nieuwe fiets-->
+      <!--</paper-button>-->
     </div>
   </template>
 
   <script>
     Polymer({
       is: 'my-view2',
+        properties: {
+            fietsen: {
+                type: Array
+            }
+        },
+        responseHandler: function (request) {
+          console.log(request.detail.response);
+            this.fietsen = request.detail.response;
+        },
+//        _fiets_toevoegen_request_handler : function () {
+//            this.$.ajax.contentType="application/json";
+//            this.$.ajax.body={
+//                "fiets":this.fiets
+//            };
+//            this.$.ajax.generateRequest();
+//        }
     });
   </script>
 </dom-module>
