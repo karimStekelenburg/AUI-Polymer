@@ -53,7 +53,7 @@ attach the `<paper-input-container>` itself, so that it can be set up correctly.
 
 ### Validation
 
-If the `auto-validate` attribute is set, the input container will validate the input and update
+If the `auto-validateDate` attribute is set, the input container will validateDate the input and update
 the container styling when the input value changes.
 
 ### Add-ons
@@ -374,7 +374,7 @@ This element is `display:block` by default, but you can set the `inline` attribu
       },
 
       /**
-       * Set to true to auto-validate the input value when it changes.
+       * Set to true to auto-validateDate the input value when it changes.
        */
       autoValidate: {
         type: Boolean,
@@ -383,7 +383,7 @@ This element is `display:block` by default, but you can set the `inline` attribu
 
       /**
        * True if the input is invalid. This property is set automatically when the input value
-       * changes if auto-validating, or when the `iron-input-validate` event is heard from a child.
+       * changes if auto-validating, or when the `iron-input-validateDate` event is heard from a child.
        */
       invalid: {
         observer: '_invalidChanged',
@@ -483,7 +483,7 @@ This element is `display:block` by default, but you can set the `inline` attribu
         this.addEventListener('input', this._onInput);
       }
 
-      // Only validate when attached if the input already has a value.
+      // Only validateDate when attached if the input already has a value.
       if (this._inputElementValue != '') {
         this._handleValueAndAutoValidate(this._inputElement);
       } else {

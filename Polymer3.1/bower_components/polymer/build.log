@@ -575,7 +575,7 @@ util-extend: 1.0.3
 uuid: 2.0.3
 utils-merge: 1.0.0
 v8flags: 2.0.11
-validate-npm-package-license: 3.0.1
+validateDate-npm-package-license: 3.0.1
 vargs: 0.1.0
 vary: 1.1.0
 vasync: 1.6.3
