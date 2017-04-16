@@ -26,13 +26,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-width: 100px;
         text-align: left;
       }
-      .my-button {
-        width: 100%;                        /* full width */
-        color: white;                       /* white tekst */
-        background: #1a9fd9;                /* kind of blue */
-        --paper-button-ink-color: #00567B;  /* kind of dark blue */
-        margin-top: 5px;                    /* enlarge thet default */
-        margin-left: 0px;                   /* reduce the default */
+      paper-button {
+        color: white;
+        background: #1a9fd9;
+        --paper-button-ink-color: #00567B;
+        margin-top: 5px;
+        margin-left: 0px;
       }
     </style>
 
@@ -55,10 +54,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button on-click="_fiets_toevoegen_request_handler" class="green">Bevestigen</paper-button>
             <paper-button on-click="cancelBike" class="red">Annuleren</paper-button>
         </p>
-      <paper-button
-              class="my-button"
-              on-click="_fiets_toevoegen_request_handler">nieuwe fiets
-      </paper-button>
       <iron-ajax id="ajax" method="POST" url="/cgi-bin/new_fiets.py" handle-as="json" on-response="responseHandler"></iron-ajax>
     </div>
   </template>
@@ -68,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'my-view1',
 
         responseHandler: function (request) {
-            console.log("Response: " + request.detail.response.errorCode);
+            //console.log("Response: " + request.detail.response.errorCode);
         },
         _fiets_toevoegen_request_handler : function () {
             this.$.ajax.contentType = "application/json";
@@ -78,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 notes: this.notes
             };
             this.$.ajax.generateRequest();
-            return true;
+
         },
         cancelBike: function() {
             clearFields();
