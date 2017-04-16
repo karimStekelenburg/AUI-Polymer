@@ -19,18 +19,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      .left {
+        min-width: 100px;
+        text-align: left;
+      }
+      .my-button {
+        width: 100%;                        /* full width */
+        color: white;                       /* white tekst */
+        background: #1a9fd9;                /* kind of blue */
+        --paper-button-ink-color: #00567B;  /* kind of dark blue */
+        margin-top: 5px;                    /* enlarge thet default */
+        margin-left: 0px;                   /* reduce the default */
+      }
     </style>
 
     <div class="card">
       <h1>Fietsen</h1>
       <p></p>
-      <table
+      <table>
+        <tr>
+          <th class="left id">ID </th>
+          <th class="left datum">Datum van registratie </th>
+          <th class="left status">Status</th>
+          <th class="left actie">Acie </th>
+          <th class="left notities">Notities</th>
+        </tr>
+        <template is="dom-repeat" items="{{fietsen}}">
+          <tr>
+            <td class="left id">{{item.id}}</td>
+            <td class="left datum">{{item.date}}</td>
+            <td class="left status">{{item.status}}</td>
+            <td class="left actie">{{item.action}}</td>
+            <td class="left notities">{{item.notes}}</td>
+          </tr>
+        </template>
+      </table>
+      <paper-button
+              class="my-button"
+              on-click="_fiets_toevoegen_request_handler">nieuwe fiets
+      </paper-button>
     </div>
   </template>
 
   <script>
     Polymer({
       is: 'my-view1',
+
+      properties: {
+          fietsen: {
+              type: Array
+          }
+      }
     });
   </script>
 </dom-module>
