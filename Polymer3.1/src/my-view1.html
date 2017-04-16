@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <h1>Fietsen</h1>
-        <h1>Nieuwe reservering</h1>
+        <h1>Nieuwe registreren</h1>
         <p>
         <h2>1. Vul een datum en tijd in</h2>
         <paper-input id="input1" label="Vul een datum in (yyyy-mm-dd)" value="{{date}}"></paper-input>
@@ -67,11 +67,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
         is: 'my-view1',
 
-        properties: {
-            fietsen: {
-                type: Array
-            }
-        },
         responseHandler: function (request) {
             console.log("Response: " + request.detail.response.errorCode);
         },
