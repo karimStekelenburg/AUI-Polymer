@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <iron-ajax auto id="ajax" method="POST" url="/cgi-bin/get_fietsen.py" handle-as="json" last-response="{{reservations}}"></iron-ajax>
+    <iron-ajax auto id="ajax" method="POST" url="/cgi-bin/get_fietsen.py" handle-as="json" on-response="responseHandler"></iron-ajax>
     <div class="card">
       <div class="circle">2</div>
       <h1>Fietsen overzicht</h1>
@@ -44,16 +44,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <th class="left id">ID </th>
           <th class="left datum">Datum van registratie </th>
           <th class="left status">Status</th>
-          <th class="left actie">Acie </th>
           <th class="left notities">Notities</th>
         </tr>
-        <template is="dom-repeat" items="{fietsen}}">
+        <template is="dom-repeat" items="[[fietsen]]">
           <tr>
-            <td class="left id">{item.id}}</td>
-            <td class="left datum">{item.date}}</td>
-            <td class="left status">{item.status}}</td>
-            <td class="left actie">{item.action}}</td>
-            <td class="left notities">{item.notes}}</td>
+            <td class="left id">[[item.id]]</td>
+            <td class="left datum">[[item.regDate]]</td>
+            <td class="left status">[[item.status]]</td>
+            <td class="left notities">[[item.notes]]</td>
           </tr>
         </template>
       </table>
@@ -69,20 +67,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'my-view2',
         properties: {
             fietsen: {
-                type: Array
+                value: []
             }
         },
         responseHandler: function (request) {
           console.log(request.detail.response);
             this.fietsen = request.detail.response;
-        },
-//        _fiets_toevoegen_request_handler : function () {
-//            this.$.ajax.contentType="application/json";
-//            this.$.ajax.body={
-//                "fiets":this.fiets
-//            };
-//            this.$.ajax.generateRequest();
-//        }
+        }
     });
   </script>
 </dom-module>

@@ -1,7 +1,9 @@
+#!/usr/bin/env python
 from cgi import parse_header
 import logging, os, sys, json, datetime
 
 logging.basicConfig(level=logging.INFO)
+
 
 def validateDate(date_text):
     try:
@@ -9,10 +11,11 @@ def validateDate(date_text):
     except ValueError:
         raise ValueError("Incorrect data format, should be YYYY-MM-DD")
 
+
 def datetime_handler(x):
     if isinstance(x, datetime.datetime):
         return x.isoformat()
-    # raise TypeError("Unknown type")
+        # raise TypeError("Unknown type")
 
 
 def serializeJson(dict):
@@ -23,6 +26,7 @@ def serializeJson(dict):
     output += str(data) + "\n"
     print(output)
     logging.info("data send: " + output)
+
 
 def deserializeJson():
     logging.info("Start reading request")
