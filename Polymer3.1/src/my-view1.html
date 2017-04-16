@@ -54,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button on-click="_fiets_toevoegen_request_handler" class="green">Bevestigen</paper-button>
             <paper-button on-click="cancelBike" class="red">Annuleren</paper-button>
         </p>
-      <iron-ajax id="ajax" method="POST" url="/python_cgi/new_fiets.py" handle-as="json" on-response="responseHandler"></iron-ajax>
+      <iron-ajax id="ajax" method="POST" url="/cgi-bin/new_fiets.py" handle-as="json" on-response="responseHandler"></iron-ajax>
     </div>
   </template>
 
@@ -63,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'my-view1',
 
         responseHandler: function (request) {
-            console.log("Response: " + request.detail.response.errorCode);
+            //console.log("Response: " + request.detail.response.errorCode);
         },
         _fiets_toevoegen_request_handler : function () {
             this.$.ajax.contentType = "application/json";
@@ -73,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 notes: this.notes
             };
             this.$.ajax.generateRequest();
-            return true;
+
         },
         cancelBike: function() {
             clearFields();
