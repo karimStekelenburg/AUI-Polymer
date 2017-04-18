@@ -15,65 +15,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 <dom-module id="my-view2">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-        padding: 10px;
-      }
-      .left {
-        min-width: 100px;
-        text-align: left;
-      }
-      .my-button {
-        width: 100%;                        /* full width */
-        color: white;                       /* white tekst */
-        background: #1a9fd9;                /* kind of blue */
-        --paper-button-ink-color: #00567B;  /* kind of dark blue */
-        margin-top: 5px;                    /* enlarge thet default */
-        margin-left: 0px;                   /* reduce the default */
-      }
-    </style>
-
-    <iron-ajax auto id="ajax" method="POST" url="/cgi-bin/get_fietsen.py" handle-as="json" on-response="responseHandler"></iron-ajax>
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>Fietsen overzicht</h1>
-      <table>
-        <tr>
-          <th class="left id">ID </th>
-          <th class="left datum">Datum van registratie </th>
-          <th class="left status">Status</th>
-          <th class="left notities">Notities</th>
-        </tr>
-        <template is="dom-repeat" items="[[fietsen]]">
-          <tr>
-            <td class="left id">[[item.id]]</td>
-            <td class="left datum">[[item.regDate]]</td>
-            <td class="left status">[[item.status]]</td>
-            <td class="left notities">[[item.notes]]</td>
-          </tr>
-        </template>
-      </table>
-      <!--<paper-button-->
-              <!--class="my-button"-->
-              <!--on-click="_fiets_toevoegen_request_handler">nieuwe fiets-->
-      <!--</paper-button>-->
-    </div>
-  </template>
-
-  <script>
-    Polymer({
-      is: 'my-view2',
-        properties: {
-            fietsen: {
-                value: []
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
             }
-        },
-        responseHandler: function (request) {
-          console.log(request.detail.response);
-            this.fietsen = request.detail.response;
-        }
-    });
-  </script>
+
+            .left {
+                min-width: 100px;
+                text-align: left;
+            }
+
+            .my-button {
+                width: 100%; /* full width */
+                color: white; /* white tekst */
+                background: #1a9fd9; /* kind of blue */
+                --paper-button-ink-color: #00567B; /* kind of dark blue */
+                margin-top: 5px; /* enlarge thet default */
+                margin-left: 0px; /* reduce the default */
+            }
+        </style>
+
+        <iron-ajax auto id="ajax_get_fietsen" method="POST" url="/cgi-bin/get_fietsen.py" handle-as="json"
+                   on-response="_get_fietsen_responseHandler"></iron-ajax>
+        <iron-ajax id="ajax_change_state" method="POST" url="/cgi-bin/change_state.py" handle-as="json" on-response="_change_status_responseHandler"></iron-ajax>
+        <div class="card">
+            <h1>Fietsen overzicht</h1>
+            <table>
+                <tr>
+                    <th class="left id">ID</th>
+                    <th class="left datum">Datum van registratie</th>
+                    <th class="left status">Status</th>
+                    <th class="left notities">Notities</th>
+                </tr>
+                <template is="dom-repeat" items="[[fietsen]]">
+                    <tr>
+                        <td class="left id">[[item.id]]</td>
+                        <td class="left datum">[[item.regDate]]</td>
+                        <td class="left status">
+                            <button
+                                    class="my-button"
+                                    on-click="_change_status_requestHandler([[item.id]],[[item.status]])">[[item.status]]
+                            </button>
+                        </td>
+                        <td class="left notities">[[item.notes]]</td>
+                    </tr>
+                </template>
+            </table>
+
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'my-view2',
+            properties: {
+                fietsen: {
+                    value: []
+                }
+            },
+            _get_fietsen_responseHandler: function (request) {
+                console.log(request.detail.response);
+                this.fietsen = request.detail.response;
+            },
+            _change_status_responseHandler: function (request) {
+                console.log(request.detail.response);
+            },
+            _change_status_requestHandler: function (id, status) {
+                this.$.ajax_change_state.contentType = "application/json";
+                this.$.ajax_change_state.body = {
+                    id: id,
+                    status: status
+                };
+                this.$.ajax_change_state.generateRequest();
+            }
+        });
+    </script>
 </dom-module>

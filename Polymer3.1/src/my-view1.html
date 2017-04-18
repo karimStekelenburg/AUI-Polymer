@@ -36,8 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <h1>Fietsen</h1>
-        <h1>Nieuwe registreren</h1>
+      <h1>Fiets Kaart aanmaken</h1>
         <p>
         <h2>1. Vul een datum en tijd in</h2>
         <paper-input id="input1" label="Vul een datum in (yyyy-mm-dd)" value="{{date}}"></paper-input>
@@ -50,9 +49,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-input id="input3" label="Vul een notities in" value="{{notes}}"></paper-input>
         </p>
         <p>
-        <h2>4. Bevestigen</h2>
-            <paper-button on-click="_fiets_toevoegen_request_handler" class="green">Bevestigen</paper-button>
-            <paper-button on-click="cancelBike" class="red">Annuleren</paper-button>
+        <paper-button on-click="_fiets_toevoegen_request_handler" class="green">Bevestigen</paper-button>
+        <paper-button on-click="cancelBike" class="red">Annuleren</paper-button>
         </p>
       <iron-ajax id="ajax" method="POST" url="/cgi-bin/new_fiets.py" handle-as="json" on-response="responseHandler"></iron-ajax>
     </div>
