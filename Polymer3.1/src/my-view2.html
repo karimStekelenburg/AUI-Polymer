@@ -38,8 +38,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
 
         <iron-ajax auto id="ajax_get_fietsen" method="POST" url="/cgi-bin/get_fietsen.py" handle-as="json"
-                   on-response="_get_fietsen_responseHandler"></iron-ajax>
-        <iron-ajax id="ajax_change_state" method="POST" url="/cgi-bin/change_state.py" handle-as="json" on-response="_change_status_responseHandler"></iron-ajax>
+                   on-response="get_fietsen_responseHandler"></iron-ajax>
+        <iron-ajax id="ajax_change_state" method="POST" url="/cgi-bin/update_fiets.py" handle-as="json" on-response="change_status_responseHandler"></iron-ajax>
         <div class="card">
             <h1>Fietsen overzicht</h1>
             <table>
@@ -54,9 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <td class="left id">[[item.id]]</td>
                         <td class="left datum">[[item.regDate]]</td>
                         <td class="left status">
-                            <button
-                                    class="my-button"
-                                    on-click="_change_status_requestHandler([[item.id]],[[item.status]])">[[item.status]]
+                            <button id="[[item.id]]:[[item.status]]" value="[[item.status]]" on-click="change_status_requestHandler">[[item.status]]
                             </button>
                         </td>
                         <td class="left notities">[[item.notes]]</td>
@@ -69,20 +67,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
         Polymer({
-            is: 'my-view2',
+                is: 'my-view2',
             properties: {
                 fietsen: {
                     value: []
                 }
             },
-            _get_fietsen_responseHandler: function (request) {
+            get_fietsen_responseHandler: function (request) {
                 console.log(request.detail.response);
                 this.fietsen = request.detail.response;
             },
-            _change_status_responseHandler: function (request) {
+            change_status_responseHandler: function (request) {
                 console.log(request.detail.response);
             },
-            _change_status_requestHandler: function (id, status) {
+            change_status_requestHandler: function (event) {
+                getdata = event.target.id;
+
+                id = getdata.split(':')[0];
+                status = getdata.split(':')[1];
+
+                switch(status){
+                    case "verhuurbaar":
+                        status = "verhuurt";
+                        break;
+                    case "verhuurt":
+                        status = "verhuurbaar";
+                        break;
+                    case "in onderhoud":
+                        status = "verhuurbaar";
+                        break;
+                }
+
                 this.$.ajax_change_state.contentType = "application/json";
                 this.$.ajax_change_state.body = {
                     id: id,

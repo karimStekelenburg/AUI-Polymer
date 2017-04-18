@@ -5,8 +5,8 @@ from helpers import *
 def updateFiets(update_request):
 		try:
 				db.cursor.execute("""
-			  UPDATE Fietsen
-				SET Status=%s
+			  UPDATE fietsen
+				SET status=%s
 				WHERE id=%s
 			""", (update_request['status'], update_request['id']))
 				db.cnx.commit()
